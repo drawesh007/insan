@@ -18,55 +18,47 @@ body {
 
 /* شريط التبرعات */
 .donations-bar {
-    overflow: hidden;
-    white-space: nowrap;
-    background-color: #B31E24;
-    background-image: url('islamic-pattern.png');
-    background-size: contain;
-    background-blend-mode: soft-light;
-    border-radius: 10px;
     position: relative;
-    padding: 0;
+    overflow: hidden;
     height: 50px;
+    background-color: #B31E24;
+    border-radius: 10px;
+    line-height: 50px; /* لمحاذاة النص عمودياً */
+    padding-left: 60px; /* تعديل المسافة من اليسار لتبدأ بعد الشعار */
 }
 
-/* حاوية العناصر المتحركة */
-.donations-bar::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, #B31E24 0%, transparent 5%, transparent 95%, #B31E24 100%);
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* تجميع كل العناصر في حاوية واحدة للتحريك */
+/* حاوية التمرير */
 .donations-content {
-    display: inline-block;
-    animation: scrollText 60s linear infinite;
-    animation-delay: 0s;
-    padding-left: 100%;
-    white-space: nowrap;
+    display: inline-block; /* تأكد من أن العرض صحيح */
+    position: absolute;
+    white-space: nowrap; /* منع التفاف النص */
+    animation: moveLeft 20s linear infinite; /* تأكد من أن الرسوم المتحركة صحيحة */
+    left: 0; /* تأكد من أن المحتوى يبدأ من اليسار */
 }
 
+/* وصف المشروع */
 .project-description {
-    display: inline-block;
+    font-size: 1.2rem;
+    color: white;
     margin: 0 20px;
-    white-space: nowrap;
-    color: #ffffff;
+    display: inline-block; /* تأكد من أن العرض صحيح */
+    padding: 0 15px;
 }
 
-@keyframes scrollText {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+/* تأثير الحركة */
+@keyframes moveLeft {
+    0% {
+        transform: translateX(100%); /* بدء الحركة من خارج الشاشة من اليمين */
+    }
+    100% {
+        transform: translateX(-100%); /* التحرك إلى خارج الشاشة من اليسار */
+    }
 }
 
-/* إضافة تأثير hover */
-.donation-item:hover {
-    color: #fff;
+/* تأثير عند المرور فوق العنصر */
+.project-description:hover {
+    animation-play-state: paused; /* إيقاف الحركة عند المرور */
+    cursor: pointer;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     transform: scale(1.1);
     transition: all 0.3s ease;
@@ -111,6 +103,7 @@ body {
     font-size: 1.5rem;
     color: #B31E24;
     background-color: #f8f8f8;
+    font-weight: bold;
 }
 
 /* قسم الإحصائيات */
@@ -132,10 +125,11 @@ body {
 }
 
 .amount {
-    font-size: 3rem;
+    font-size: 4em;
     font-weight: bold;
     color: #B31E24;
     display: block;
+    transition: transform 0.3s ease;
 }
 
 .currency {
@@ -156,6 +150,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(179, 30, 36, 0.1);
     border: 1px solid rgba(179, 30, 36, 0.1);
+    margin-top: 20px;
 }
 
 .stat-number {
@@ -188,4 +183,16 @@ body {
     .stat-number {
         font-size: 1.5rem;
     }
+}
+
+.logo-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
 }
