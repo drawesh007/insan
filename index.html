@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جمعية إنسان الخيرية - DirectAid</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- شريط التبرعات في الأعلى -->
+        <div class="donations-bar">
+            <div class="donations-content marquee">
+                <div class="marquee-content">
+                    <span class="project-description">
+                        مشروع ارتقاء في البرازيل يهدف إلى دعم وتعزيز المجتمع المسلم من خلال بناء مركز إسلامي يخدم الجالية المسلمة في منطقة سانتانا دو ليفرامينتو
+                    </span>
+                    <span class="project-description">
+                        مشروع ارتقاء في البرازيل يهدف إلى دعم وتعزيز المجتمع المسلم من خلال بناء مركز إسلامي يخدم الجالية المسلمة في منطقة سانتانا دو ليفرامينتو
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <main class="content">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="Erteqaa.webp" alt="ارتقاء - مسجد السلام | البرازيل">
+                </div>
+                <h2 class="project-title">ارتقاء - مسجد السلام | البرازيل</h2>
+            </div>
+
+            <div class="statistics">
+                <div class="logo-section">
+                    <img src="insan-logo.png" alt="جمعية إنسان الخيرية" class="main-logo">
+                </div>
+                
+                <div class="total-amount">
+                    <span class="amount" id="counter">120,570</span>
+                    <span class="currency">دينار كويتي</span>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-number">450</div>
+                        <div class="stat-label">عدد المستفيدين</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">185,000</div>
+                        <div class="stat-label">قيمة المشروع</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // دالة لتنفيذ العداد المتزايد
+        function animateCounter(elementId, targetValue, duration) {
+            const element = document.getElementById(elementId);
+            const startValue = 0;
+            const increment = Math.ceil(targetValue / (duration / 20));
+            let currentValue = startValue;
+            
+            // إزالة الفواصل من القيمة المستهدفة للحساب
+            const targetNumeric = parseInt(targetValue.toString().replace(/,/g, ''));
+            
+            const timer = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= targetNumeric) {
+                    clearInterval(timer);
+                    currentValue = targetNumeric;
+                }
+                
+                // إضافة الفواصل للعرض بالفورمات الإنجليزي
+                element.textContent = currentValue.toLocaleString('en-US');
+            }, 20);
+        }
+        
+        // تشغيل العداد عند تحميل الصفحة
+        window.addEventListener('load', () => {
+            // استخراج القيمة الأصلية من العنصر
+            const counterElement = document.getElementById('counter');
+            const targetValue = counterElement.textContent.replace(/,/g, '');
+            
+            // تشغيل العداد
+            animateCounter('counter', targetValue, 2000); // 2000 مللي ثانية = 2 ثانية
+        });
+    </script>
+</body>
+</html> 
